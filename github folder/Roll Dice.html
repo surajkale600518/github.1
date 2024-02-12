@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            border: 0;
+            outline: 0;
+        }
+        body{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: rgba(221,50,125);
+        }
+        .container{
+            display: grid;
+            place-items: center;
+            width: 500px;
+            background: #eee;
+            padding: 60px 0 40px;
+            border-radius: 40px;
+            box-shadow: rgba(0, 0,0,0.1);
+        }
+        .dice{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            transform: rotateX(45deg) rotateY(45deg);
+           /* animation: rolling 4s ;*/
+        }
+        @keyframes rolling{
+            50%{
+                transform: rotateX(555deg) rotateY(555deg);
+            }
+        }
+        .face{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 5px solid#da9551;
+            border-radius: 20px;
+            background: linear-gradient(145deg,#2e200b,#f04141);
+            transform-style: preserve-3d;
+        }
+        .face::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: #f6f3f0;
+            transform: translateZ(-1px);
+        }
+        .face::after{
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background: black;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+        .font{
+            transform: translateZ(50px);
+        }
+        .back{
+            transform: rotateX(180deg) translateZ(50px);
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(50px);
+            
+        }
+        .bottom{
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+        .right{
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        .left{
+            transform: rotateY(-90deg) translateZ(50px);
+        } 
+        /* I Will delete this , just for testing */
+        .dice{
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+        .font::after{
+            width: 30px;
+            height: 30px;
+            background: rgb(97, 76, 85);
+            margin: -15px 0 0 -15px;
+        }
+        .back::after{
+            margin: -35px 0 0 -30px;
+            box-shadow: 40px 0, 0 25px,40px 25px,0 50px,40px 50px;
+        }
+        .top::after{
+            margin: -30px 0 0 -30px;
+            box-shadow: 40px 40px;
+
+        }
+        .bottom::after{
+            margin: -36px 0 0 -36px;
+            box-shadow: 26px 26px,52px 52px,52px 0,0 52px;
+        }
+        .right::after{
+            margin: -30px 0 0 -30px;
+            box-shadow: 40px 0,0 40px,40px 40px;
+        }
+        .left::after{
+            margin: -35px 0 0 -35px;
+            box-shadow: 25px 25px,50px 50px;
+        }
+        .roll{
+            color: rgb(88, 80, 84);
+            margin-top: 60px;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid  rgba(221, 50, 124, 0.438);
+            cursor: pointer;
+        }
+        .roll:hover{
+            background-color: rgb(54, 19, 40);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="dice">
+    <div class="face font"></div>
+    <div class="face back"></div>
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+    <div class="face right"></div>
+    <div class="face left"></div>
+    
+</div>
+<button class="roll">
+    <h2>ludo game</h2>
+</button>
+</div>
+
+
+
+
+
+
+
+    <script>
+        const dice = document.querySelector('.dice');
+        const rollBtn = document.querySelector('.roll');
+
+        const  randomDice = () =>{
+            const random = Math.floor(Math.random() * 10)
+            if(random >= 1 && random <= 6){
+                rollDice(random);
+            }else{
+                randomDice
+            }
+        }
+        const rollDice = random =>{
+            dice.style.animation ='rolling 4s';
+            setTimeout(() =>{
+                switch(random) {
+                    case 1: dice.style.transform ='rotateX(0deg) rotateY(0deg)';
+                    break;
+                    
+                    case 6: dice.style.transform ='rotateX(180deg) rotateY(0deg)';
+                    break;
+
+                    case 2: dice.style.transform ='rotateX(-90deg) rotateY(0deg)';
+                    break;
+
+                    case 5: dice.style.transform ='rotateX(0deg) rotateY(90deg)';
+                    break;
+
+                    case 3: dice.style.transform ='rotateX(0deg) rotateY(90deg)';
+                    break;
+
+                    case 4: dice.style.transform ='rotateX(0deg) rotateY(-90deg)';
+                    break;
+
+                    default:break;
+                }
+                dice.style.animation ='none';
+            },4050);
+        }
+
+        rollBtn.addEventListener('click',randomDice);
+    </script>
+</body>
+</html>

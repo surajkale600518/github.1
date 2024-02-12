@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation: a1 10s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+            animation-timing-function: linear;
+            border: 10px solid;
+            border-top-color: rebeccapurple;
+            
+            border-bottom-color: rgb(113, 214, 18);
+        }
+        #d2{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            background-color: red;
+            animation: a1 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            border: 10px solid;
+            border-top-color: rebeccapurple;
+            border-bottom-color: rgb(113, 214, 18);
+        }
+
+        @keyframes a1 {
+            0%{
+                background-color: red;
+                border-radius: 0px;
+                left: 0%;
+                transform: rotate(0deg);
+            }
+            50%{
+                background-color: blue;
+                border-radius: 360px;
+                left: 50%;
+                transform: rotate(360deg);
+            }
+
+            100%{
+                background-color: green;
+                border-radius: 0px;
+                left: 90%;
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">
+
+    </div> 
+    <div id="d2">
+
+    </div>     
+</body>
+</html>
